@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="main()">点击进行抽奖</button>
+</body>
+<script>
+  function main(){
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let num = Math.random().toFixed(2) * 100;
+        num = parseInt(num);
+        num < 50 ? resolve(num) : reject(num);
+      }, 500);
+    });
+
+    // 在then当中传递两个回调，分别为成功和失败的回调
+    p.then((res) => {
+      console.log(`res ${res}`);
+    }, (err) => {
+      console.log(`err ${err}`);
+    });
+
+    // 也可以在then当中只传递成功的回调，使用catch来处理失败
+    p.then((res) => {
+      console.log(`res ${res}`);
+    }).catch((err) => {
+      console.log(`err ${err}`);
+    });
+  }
+</script>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    async返回的是一个promise对象，这个promise的结果由函数的返回值决定
+    - 返回一个非promise对象的值，返回值就是结果
+    - 返回一个promise对象，则async返回的promise对象的结果由函数返回的promise的值决定
+    - 函数当中throw，抛出错误，则async返回的promise对象状态为rejected，结果为抛出的错误
+  -->
+</body>
+<script>
+  async function main() {
+    // return "非promise";
+
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve("promise的结果为111");
+    //   }, 500);
+    // });
+
+    // throw "错误";
+  }
+  let result = main();
+  console.log(result);
+</script>
+</html>

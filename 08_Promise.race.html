@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promise.race();
+    说明：
+    1、参数是一个数组，数组当中是n个promise对象
+    2、返回一个新的promise，第一个完成的promise的结果状态就是最终返回的结果状态（谁先完成，就用谁的，不管这个是成功还是失败）
+  -->
+</body>
+<script>
+  const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject(1);
+    }, 500);
+  });
+  const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(2);
+    }, 1000);
+  });
+
+  const p3 = Promise.race([p1, p2]);
+  p3.then(res => {
+    console.log(`res ${res}`);
+  }).catch(err => {
+    console.log(`err ${err}`);
+  });
+</script>
+</html>

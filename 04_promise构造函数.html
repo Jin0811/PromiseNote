@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promisr构造函数：Promise(executor)
+    1、executor函数：执行器，(resolve, reject) => {}
+    2、resolve函数：内部定义成功时我们调用的函数
+    3、reject函数：内部定义失败时我们调用的函数
+    注意：executor函数会在Promise内部立即同步调用，异步操作是在执行器内进行执行的
+  -->
+</body>
+<script>
+  console.log(1);
+  const p = new Promise((resolve, reject) => {
+    console.log(2);
+    setTimeout(() => {
+      resolve()
+    }, 500);
+  });
+  p.then(() => {
+    console.log(3);
+  });
+  console.log(4);
+
+  // 注意：打印的顺序为：1 2 4 3，而不是1 4 2 3
+  // 这是因为Promise的执行器是同步执行的
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promise.resolve() 是Promise这个类的静态方法
+    说明：返回一个成功的数据或者promise对象
+  -->
+</body>
+<script>
+  // 1、传入的参数为非Promise类型的对象，则返回的结果为成功的promise对象
+  const p1 = Promise.resolve({ id: "1", name: "张三" });
+  console.log(p1);
+  p1.then((res) => {
+    console.log(res);
+  });
+
+  // 2、传入的参数是一个thenable对象，thenable对象指的是具有then方法的对象
+  // Promise.resolve方法会将这个对象转为Promise对象，然后就立即执行thenable对象的then方法
+  let thenableObject = {
+    then: (resolve, reject) => {
+      resolve(20);
+    }
+  };
+  const p2 = Promise.resolve(thenableObject);
+  p2.then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    console.log(err);
+  });
+
+  // 3、如果传入的参数为Promise对象，则参数的结果决定了resolve的结果
+  // 本质上说，如果参数是 Promise 实例，那么Promise.resolve将不做任何修改、原封不动地返回这个实例
+  const pInstance = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1);
+    }, 500);
+  });
+  const p3 = Promise.resolve(pInstance);
+  console.log(p2);
+  p3.then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    console.log(err);
+  });
+
+  // 4、不传递参数，则直接返回一个resolved状态的 Promise 对象
+  const p4 = Promise.resolve();
+  console.log(p4);
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promise的状态：实例对象上的一个属性（PromiseState）
+    1、pending
+    2、resolved / fulfilled 成功
+    3、rejected 失败
+
+    Promise的状态改变方式：
+    1、pending => resolved
+    2、pending => rejected
+    promise的状态只能发生一次变化，且只能是从pending变成resolved，或者是从pending变成rejected
+    一旦发生改变，不能再次进行改变，也不能从resolved转换为rejected
+
+    Promise的值：实例对象上的一个属性（PromiseResult），保存着异步任务成功或者失败的结果
+    只有resolve和reject才能修改PromiseResult
+  -->
+</body>
+<script>
+  const p = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let num = Math.random().toFixed(2) * 100;
+      num = parseInt(num);
+      num < 50 ? resolve(num) : reject(num);
+    }, 500);
+  });
+  console.log(p);
+</script>
+</html>

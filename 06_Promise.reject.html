@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promise.reject() 是Promise这个类的静态方法
+    说明：无论传递什么参数，返回一个失败的promise对象
+  -->
+</body>
+<script>
+  const pInstance = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(20);
+    }, 1000);
+  });
+
+  const p1 = Promise.reject(pInstance);
+  console.log(p1); // 即使这里传入了一个成功的promise，但是p1仍然是一个失败的promise对象
+  p1.then((res) => {
+    console.log(res);
+  }).catch((err) => {
+    // 会进入catch当中
+    console.log(err);
+  });
+</script>
+</html>

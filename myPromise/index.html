@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义Promise</title>
+  <!-- <script src="./index.js"></script> -->
+  <script src="./classPromise.js"></script>
+</head>
+<body>
+  <!--
+    - 执行器函数是同步执行的
+    - resolve、reject执行之后，需要更改状态，设置结果
+    - throw之后，promise的状态为rejected，结果为throw的错误
+    - promise的状态只能更改一次，一旦发生改变，后续不能再改变
+    - promise可以执行多个回调
+    - then当中成功、失败的回调都可以不传，封装时需要进行指定默认值
+  -->
+</body>
+<script>
+  // MyPromise Promise
+  // const pInstance = new Promise((resolve, reject) => {
+  //   // resolve("OK");
+  //   // reject("error");
+  //   setTimeout(() => {
+  //     // resolve("OK");
+  //     reject("错误：error");
+  //     // throw "抛出异常";
+  //   }, 1000);
+  // });
+
+  // const result = pInstance.then((res) => {
+  //   console.log(res);
+  //   // return "返回一个非Promise对象的数据";
+  //   // return new Promise((resolve, reject) => {
+  //   //   resolve("返回一个Promise对象，状态为resolved");
+  //   //   // reject("返回一个Promise对象，状态为rejected");
+  //   // });
+  //   // throw "抛出了异常";
+  // }, (err) => {
+  //   console.error(err);
+  //   // return "返回一个非Promise对象的数据";
+  //   // return new Promise((resolve, reject) => {
+  //   //   resolve("返回一个Promise对象，状态为resolved");
+  //   //   // reject("返回一个Promise对象，状态为rejected");
+  //   // });
+  //   // throw "抛出了异常";
+  // });
+
+  // const result = pInstance.catch((err) => {
+  //   console.error(err);
+  // });
+
+  // const result = pInstance.then().then((res) => {
+  //   console.log(res);
+  //   return "111";
+  // }).then((res) => {
+  //   console.log(res);
+  // }).catch((err) => {
+  //   console.error(err);
+  // });
+
+  // console.log(pInstance);
+  // console.log(result);
+
+  // Promise.resolve
+  // const p1 = Promise.resolve("ok");
+  // const p2 = Promise.resolve(new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     // resolve("success");
+  //     reject("err");
+  //   }, 1000);
+  // }));
+  // const p3 = Promise.resolve(p2);
+  // console.log(p1);
+  // console.log(p2);
+  // console.log(p3);
+
+  // Promise.reject
+  // const p1 = Promise.reject("字符串");
+  // const p2 = Promise.reject(new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     resolve("success");
+  //   }, 1000);
+  // }));
+  // console.log(p1);
+  // console.log(p2);
+  
+  // const p1 = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     // resolve("成功 1");
+  //     reject("失败 1");
+  //   }, 100);
+  // });
+  // const p2 = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     // resolve("成功 2");
+  //     reject("失败 2");
+  //   }, 200);
+  // });
+  // const p3 = new Promise((resolve, reject) => {
+  //   setTimeout(() => {
+  //     // resolve("成功 3");
+  //     reject("失败 3");
+  //   }, 300);
+  // });
+
+  // Promise.all Promise.race Promise.any
+  // const result = Promise.any([p1, p2, p3]);
+  // console.log(result);
+
+  // then方法当中的回调函数是异步执行的
+  const p1 = new Promise((resolve, reject) => {
+    // resolve("成功");
+    reject("失败");
+    console.log(111);
+  });
+  p1.then(() => {
+    console.log(222);
+  }).catch(() => {
+    console.log(333);
+  });
+  console.log(444);
+
+</script>
+</html>

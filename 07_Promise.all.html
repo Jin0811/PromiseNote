@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!--
+    Promise.all();
+    说明：
+    1、参数是一个数组，数组当中是n个promise对象
+    2、返回一个新的promise，只有参数当中全部的promise都成功才成功，只要有一个失败，就直接失败
+
+    假设p为Promise.all()返回的一个新的promise
+    1、p为成功，则p的结果是一个数组，数组当中是参数中全部promise的结果
+    2、p为失败，则p的结果是最先失败的那个promise的失败信息
+
+    注意：只有当参数当中的n个promise，都执行完成之后（即更改了状态），才会返回最终的结果
+  -->
+</body>
+<script>
+  const p1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(1);
+    }, 500);
+  });
+  const p2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(2);
+    }, 1000);
+  });
+  const p3 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(3);
+    }, 1500);
+  });
+
+  const p4 = Promise.all([p1, p2, p3]);
+  p4.then(res => {
+    console.log(`res ${res}`);
+  }).catch(err => {
+    console.log(`err ${err}`);
+  });
+</script>
+</html>
